@@ -2,7 +2,7 @@
   "name": "blockkeeper",
   "productName": "Block Keeper",
   "main": "app/main.js",
-  "version": "2.2.0",
+  "version": "2.3.1",
   "author": {
     "name": "Dallas McNeil",
     "email": "dallas@dallasmcneil.com",
@@ -70,8 +70,7 @@
     },
     "appImage": {
       "synopsis": "Cubing timer",
-      "category": "Utility",
-      "systemIntegration": "doNotAsk"
+      "category": "Utility"
     }
   }
 }
