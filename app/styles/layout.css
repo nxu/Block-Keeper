@@ -1101,3 +1101,47 @@ ul {
     width: 240px;
     height: 240px;
 }
+
+@media (max-width: 400px) {
+    #scrambleContainer {
+        width: 100%;
+        height: 75px;
+        left: 0;
+    }
+
+    #scramblePrevious,
+    #scrambleNext {
+        width: 15px;
+    }
+
+    #scramble {
+        left: 15px;
+        top: 0;
+        font-size: 20px !important;
+        line-height: 20px !important;
+        width:calc(100% - 30px);    
+    }
+
+    #stats {
+        display: none !important;
+    }
+
+    #timer {
+        position: absolute;
+        font-family: digital;
+        color: #E0E0E0;
+        margin: 0px;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        bottom: 10px !important;
+        font-size: 30vmin !important;
+    }    
+
+    #previewButton,
+    #preferencesButton,
+    #toolSelect,
+    #addToolButton {
+        display: none !important;
+    }
+}
