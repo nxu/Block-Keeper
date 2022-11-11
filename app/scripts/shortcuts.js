@@ -4,7 +4,7 @@
 // Created by Dallas McNeil
 
 (function() {
-    const {webFrame} = require('electron');
+    const {remote, webFrame} = require('electron');
 
     // Recieve shortcuts and perform the acording actions
     require('electron').ipcRenderer.on('shortcut', function(event, message) { 
@@ -20,6 +20,10 @@
                 webFrame.setZoomFactor(webFrame.getZoomFactor() / 1.2);
                 windowBar.resizeWindowBar(webFrame.getZoomFactor());
             }
+        } else if (message === "CommandOrControl+I") {
+            remote.getGlobal('mainWindow').setSize(350, 175);
+        } else if (message === "CommandOrControl+O") {
+            remote.getGlobal('mainWindow').setSize(1080, 640);
         } else if ((events.sessionButtonsShowing() || !globals.menuOpen) && !timer.timerRunning() && message === "CommandOrControl+E") {
             events.toggleSessionButtons();
         } else if (!timer.timerRunning() && !globals.menuOpen) {

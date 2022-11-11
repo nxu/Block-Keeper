@@ -52,7 +52,10 @@ const template = [{
         {label:"Zoom Out", accelerator: "CmdOrCtrl+-", click() {win.webContents.send('shortcut', 'CommandOrControl+-')}},
         {type:'separator'},
         {label:"Toggle Dev Tools", accelerator:"Shirt+CmdOrCtrl+I", click() {win.toggleDevTools()}},
-        {label:"Reload", accelerator:"CmdOrCtrl+R", click() {win.webContents.send('shortcut', 'CommandOrControl+R')}}
+        {label:"Reload", accelerator:"CmdOrCtrl+R", click() {win.webContents.send('shortcut', 'CommandOrControl+R')}},
+        {type:'separator'},
+        {label:"Mini size", accelerator:"CmdOrCtrl+I", click() {win.webContents.send('shortcut', 'CommandOrControl+I')}},
+        {label:"Normal size", accelerator:"CmdOrCtrl+O", click() {win.webContents.send('shortcut', 'CommandOrControl+O')}}
     ]}, {
     role:'help',
     submenu: [
@@ -120,15 +123,22 @@ const scrambleNextButton = new TouchBarButton({
     click:() => {win.webContents.send('shortcut', 'CommandOrControl+Right')}
 })
 
-const addButton = new TouchBarButton({
-    icon:nativeImage.createFromPath(__dirname + '/images/add.png'),
-    click:() => {win.webContents.send('shortcut', 'CommandOrControl+T')}
-})
-
 const deleteButton = new TouchBarButton({
     icon:nativeImage.createFromPath(__dirname + '/images/delete.png'),
     click:() => {win.webContents.send('shortcut', 'CommandOrControl+Backspace')}
 })
+
+const miniSizeButton = new TouchBarButton({
+    label:' Mini ',
+    click:() => {win.webContents.send('shortcut', 'CommandOrControl+I')}
+})
+
+const normalSizeButton = new TouchBarButton({
+    label:' Normal ',
+    click:() => {win.webContents.send('shortcut', 'CommandOrControl+O')}
+})
+
+
 
 const touchBar = new TouchBar([
     new TouchBarGroup({items:[OKButton,
@@ -138,8 +148,11 @@ const touchBar = new TouchBar([
         scramblePreviousButton,
         scrambleNextButton,
         new TouchBarSpacer({size: 'flexible'}),
-        new TouchBarGroup({items:[addButton,
-        deleteButton]}
+        new TouchBarGroup({items: [
+            miniSizeButton,
+            normalSizeButton
+        ]}),
+        new TouchBarGroup({items:[deleteButton]}
     )
 ])
 
@@ -173,6 +186,8 @@ app.on('ready', function() {
         }
     });
 
+    global.mainWindow = win;
+
     tnoodleWin = new BrowserWindow({
         height:10,
         width:10,
@@ -199,13 +214,6 @@ app.on('ready', function() {
         protocol:'file:',
         slashes:true
     }));
-
-    win.webContents.once('did-finish-load', function() {
-        updater.init("https://raw.githubusercontent.com/DallasMcNeil/Block-Keeper/master/updates.json");
-        updater.on("update-downloading", function() {
-            win.webContents.send('update', "update");
-        });
-    });
     
     mainWindowState.manage(win);
 
