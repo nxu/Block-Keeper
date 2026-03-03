@@ -2,7 +2,7 @@
   "name": "blockkeeper",
   "productName": "Block Keeper",
   "main": "app/main.js",
-  "version": "1993.2.0",
+  "version": "1993.4.0",
   "author": {
     "name": "Dallas McNeil",
     "email": "dallas@dallasmcneil.com",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "electron": "4.0.4",
-    "electron-builder": "20.38.5",
+    "electron-builder": "23.6.0",
     "electron-builder-lib": "20.23.1",
     "electron-builder-squirrel-windows": "^20.38.5",
     "electron-simple-publisher": "^0.6.2"
