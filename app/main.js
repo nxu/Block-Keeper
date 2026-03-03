@@ -90,7 +90,10 @@ if (process.platform === 'darwin') {
         {label:"Zoom Out", accelerator: "CmdOrCtrl+-", click() {win.webContents.send('shortcut', 'CommandOrControl+-')}},
         {type:'separator'},
         {label:"Toggle Dev Tools", accelerator:"Shift+CmdOrCtrl+I", click() {win.toggleDevTools()}},
-        {label:"Reload", accelerator:"CmdOrCtrl+R", click() {win.webContents.send('shortcut', 'CommandOrControl+R')}}
+        {label:"Reload", accelerator:"CmdOrCtrl+R", click() {win.webContents.send('shortcut', 'CommandOrControl+R')}},
+        {type:'separator'},
+        {label:"Mini size", accelerator:"CmdOrCtrl+I", click() {win.webContents.send('shortcut', 'CommandOrControl+I')}},
+        {label:"Normal size", accelerator:"CmdOrCtrl+O", click() {win.webContents.send('shortcut', 'CommandOrControl+O')}}
     ]
 }
 
